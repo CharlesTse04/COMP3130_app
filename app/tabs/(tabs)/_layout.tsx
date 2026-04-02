@@ -7,7 +7,7 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={18} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={22} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
@@ -19,18 +19,51 @@ export default function TabLayout() {
         headerShown: useClientOnlyValue(false, true),
       }}
     >
-      <Tabs.Screen
+
+
+         <Tabs.Screen
         name="tab1"
         options={{
-          title: 'Tab 1',
-          tabBarIcon: ({ color }) => <TabBarIcon name="star-o" color={color} />,
+          title: 'Information',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon 
+              name={focused ? "info-circle" : "info-circle"} 
+              color={color} 
+            />
+          ),
+        }}
+      />
+            <Tabs.Screen
+        name="tab2"
+        options={{
+          title: 'Compare Schools',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon 
+              name={focused ? "balance-scale" : "balance-scale"} 
+              color={color} 
+            />
+          ),
         }}
       />
       <Tabs.Screen
-        name="tab2"
+        name="login"
         options={{
-          title: 'Tab 2',
-          tabBarIcon: ({ color }) => <TabBarIcon name="star-o" color={color} />,
+          title: 'login',
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="register"
+        options={{
+          title: 'Register',
+          href: null,
+        }}
+      />
+       <Tabs.Screen 
+        name="school/[id]" 
+        options={{
+          title: 'School Details',
+          href: null
         }}
       />
     </Tabs>

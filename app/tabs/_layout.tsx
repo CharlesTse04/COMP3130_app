@@ -9,11 +9,18 @@ export const unstable_settings = {
 };
 
 import { Stack } from 'expo-router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
-export default function AppLayout() {
+export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <SafeAreaProvider>
+      <LanguageProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+        </Stack>
+      </LanguageProvider>
+    </SafeAreaProvider>
   );
 }
